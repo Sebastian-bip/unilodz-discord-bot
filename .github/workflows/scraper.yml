@@ -2,8 +2,9 @@ name: UniLodz Discord News Scraper
 
 on:
   schedule:
-    # Uruchamia się automatycznie raz dziennie o 07:00 UTC (08:00 CET / 09:00 CEST w Polsce)
-    - cron: "0 7 * * *"
+    # Uruchamia się automatycznie 3 razy dziennie: 08:00, 12:00, 17:00 UTC
+    # (09:00, 13:00, 18:00 czasu zimowego CET / 10:00, 14:00, 19:00 czasu letniego CEST)
+    - cron: "0 8,12,17 * * *"
   workflow_dispatch:
     inputs:
       mode:

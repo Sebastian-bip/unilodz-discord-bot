@@ -1,6 +1,6 @@
 # UniLodz Discord News Bot
 
-Automatyczny scraper w Pythonie 3 (`requests` + `BeautifulSoup4`), który raz dziennie sprawdza aktualności i wydarzenia na dwóch stronach Uniwersytetu Łódzkiego i publikuje nowe wpisy na kanale Discord jako estetyczne **Discord Embedy**.
+Automatyczny scraper w Pythonie 3 (`requests` + `BeautifulSoup4`), który 3 razy dziennie (09:00, 13:00 i 18:00 CET) sprawdza aktualności i wydarzenia na dwóch stronach Uniwersytetu Łódzkiego i publikuje nowe wpisy na kanale Discord jako estetyczne **Discord Embedy**.
 
 ## Źródła danych
 - **WFiIS UŁ** (pasek niebieski `#005CA9`): https://www.wfis.uni.lodz.pl/strefa-studenta/
@@ -10,7 +10,7 @@ Automatyczny scraper w Pythonie 3 (`requests` + `BeautifulSoup4`), który raz dz
 - `scraper.py` – główny skrypt pobierający wpisy, sprawdzający `seen_posts.json` i wysyłający nowe powiadomienia na Discorda.
 - `seen_posts.json` – lokalna baza wysłanych linków (zapobiega duplikatom).
 - `requirements.txt` – zależności Pythona (`requests`, `beautifulsoup4`).
-- `.github/workflows/scraper.yml` – harmonogram GitHub Actions (raz dziennie o 08:00 CET / 09:00 CEST + ręczne uruchomienie `workflow_dispatch`).
+- `.github/workflows/scraper.yml` – harmonogram GitHub Actions (3 razy dziennie: 09:00, 13:00, 18:00 CET + ręczne uruchomienie `workflow_dispatch`).
 - `.env.example` – wzór lokalnej konfiguracji zmiennych środowiskowych.
 
 ## Wdrożenie w chmurze za darmo (GitHub Actions)
