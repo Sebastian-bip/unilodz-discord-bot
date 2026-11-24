@@ -329,7 +329,6 @@ def build_discord_payload(post: Post) -> dict[str, Any]:
         embed["thumbnail"] = {"url": post.thumbnail_url}
 
     return {
-        "username": "Aktualności UŁ",
         "embeds": [embed],
     }
 

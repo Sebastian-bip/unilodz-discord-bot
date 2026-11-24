@@ -2,9 +2,12 @@ name: UniLodz Discord News Scraper
 
 on:
   schedule:
-    # Uruchamia się automatycznie 3 razy dziennie: 08:00, 12:00, 17:00 UTC
-    # (09:00, 13:00, 18:00 czasu zimowego CET / 10:00, 14:00, 19:00 czasu letniego CEST)
-    - cron: "0 8,12,17 * * *"
+    # Uruchamia się automatycznie 3 razy dziennie poza pełną godziną (:07 zamiast :00,
+    # aby uniknąć szczytu kolejki GitHub Actions):
+    # 09:07, 13:07, 18:07 czasu zimowego CET (UTC+1) / 10:07, 14:07, 19:07 CEST (UTC+2)
+    - cron: "7 8 * * *"
+    - cron: "7 12 * * *"
+    - cron: "7 17 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -30,10 +33,10 @@ jobs:
 
     steps:
       - name: Pobierz repozytorium
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Skonfiguruj Python 3.12
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: "pip"
@@ -64,6 +67,7 @@ jobs:
           if ! git diff --quiet seen_posts.json; then
             git add seen_posts.json
             git commit -m "chore: update seen_posts.json [skip ci]"
+            git pull --rebase --autostash origin main
             git push
           else
             echo "Brak zmian w seen_posts.json – pomijam commit."
